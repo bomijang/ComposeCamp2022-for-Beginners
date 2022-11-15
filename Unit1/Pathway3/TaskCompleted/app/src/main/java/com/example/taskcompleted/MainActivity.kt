@@ -22,15 +22,33 @@ import com.example.taskcompleted.ui.theme.TaskCompletedTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { }
+        setContent {
+            androidx.compose.material.Surface {
+                TaskCompletedScreen()
+            }
+        }
     }
 }
 
 @Composable
 fun TaskCompletedScreen() {
-    Column( ) { }
+    var image = painterResource(id = R.drawable.ic_task_completed)
+    var title = stringResource(R.string.title_text)
+    var desc = stringResource(R.string.desc_text)
+    Column(
+        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center) {
+        Image(painter = image, contentDescription = null)
+        Text(text = title,modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), fontSize = 24.sp)
+        Text(text = desc, fontSize = 16.sp)
+    }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun DefaultPreview() { }
+fun DefaultPreview() {
+    TaskCompletedTheme {
+        TaskCompletedScreen()
+    }
+}
